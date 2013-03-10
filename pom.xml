@@ -11,9 +11,9 @@
     <packaging>jar</packaging>
     <groupId>org.webjars</groupId>
     <artifactId>metroui</artifactId>
-    <version>0.15.8.12-SNAPSHOT</version>
-    <name>MetroUI</name>
-    <description>WebJar for MetroUI</description>
+    <version>d93d0c5f54-SNAPSHOT</version>
+    <name>Metro UI CSS</name>
+    <description>WebJar for Metro UI CSS</description>
     <url>http://webjars.org</url>
 
     <developers>
@@ -21,6 +21,11 @@
             <id>talios</id>
             <name>Mark Derricutt</name>
             <email>mark@talios.com</email>
+        </developer>
+        <developer>
+            <id>jamesward</id>
+            <name>James Ward</name>
+            <email>james@jamesward.com</email>
         </developer>
     </developers>
 
@@ -32,17 +37,18 @@
         </license>
     </licenses>
 
-<!--     <scm>
-        <url>http://github.com/webjars/canjs</url>
-        <connection>scm:git:https://github.com/webjars/canjs.git</connection>
-        <developerConnection>scm:git:https://github.com/webjars/canjs.git</developerConnection>
+    <scm>
+        <url>http://github.com/webjars/metroui</url>
+        <connection>scm:git:https://github.com/webjars/metroui.git</connection>
+        <developerConnection>scm:git:https://github.com/webjars/metroui.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
- -->    
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <upstream.version>0.15.8.12</upstream.version>
-        <upstream.url>https://nodeload.github.com/olton/Metro-UI-CSS/</upstream.url>
+        <upstream.version>d93d0c5f54</upstream.version>
+        <upstream.commit>d93d0c5f5428333887f41fb3e44197b7eb4c0e6c</upstream.commit>
+        <upstream.url>https://github.com/olton/Metro-UI-CSS/archive</upstream.url>
         <destDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${upstream.version}</destDir>
     </properties>
 
@@ -60,7 +66,7 @@
                         </goals>
                         <configuration>
                             <url>${upstream.url}</url>
-                            <fromFile>legacy.zip/master</fromFile>
+                            <fromFile>${upstream.commit}.zip</fromFile>
                             <toFile>${project.build.directory}/${project.artifactId}.zip</toFile>
                         </configuration>
                     </execution>
@@ -80,7 +86,7 @@
                                 <unzip src="${project.build.directory}/${project.artifactId}.zip" dest="${project.build.directory}" />
                                 <echo message="moving resources" />
                                 <move todir="${destDir}">
-                                    <fileset dir="${project.build.directory}/olton-Metro-UI-CSS-4dfd89e" />
+                                    <fileset dir="${project.build.directory}/Metro-UI-CSS-${upstream.commit}" excludes="public/" />
                                 </move>
                             </target>
                         </configuration>
