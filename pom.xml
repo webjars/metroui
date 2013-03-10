@@ -11,7 +11,7 @@
     <packaging>jar</packaging>
     <groupId>org.webjars</groupId>
     <artifactId>metroui</artifactId>
-    <version>d93d0c5f54</version>
+    <version>1.0-SNAPSHOT</version>
     <name>Metro UI CSS</name>
     <description>WebJar for Metro UI CSS</description>
     <url>http://webjars.org</url>
@@ -41,7 +41,7 @@
         <url>http://github.com/webjars/metroui</url>
         <connection>scm:git:https://github.com/webjars/metroui.git</connection>
         <developerConnection>scm:git:https://github.com/webjars/metroui.git</developerConnection>
-        <tag>metroui-d93d0c5f54</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <properties>
