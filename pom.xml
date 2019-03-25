@@ -7,25 +7,20 @@
         <artifactId>oss-parent</artifactId>
         <version>7</version>
     </parent>
-    
+
     <packaging>jar</packaging>
     <groupId>org.webjars</groupId>
     <artifactId>metroui</artifactId>
-    <version>2.0.24-SNAPSHOT</version>
+    <version>4.2.39-SNAPSHOT</version>
     <name>Metro UI CSS</name>
     <description>WebJar for Metro UI CSS</description>
     <url>http://webjars.org</url>
 
     <developers>
         <developer>
-            <id>talios</id>
-            <name>Mark Derricutt</name>
-            <email>mark@talios.com</email>
-        </developer>
-        <developer>
-            <id>jamesward</id>
-            <name>James Ward</name>
-            <email>james@jamesward.com</email>
+            <id>like2k1</id>
+            <name>Tobias Ehrig</name>
+            <email>me@t0by.eu</email>
         </developer>
     </developers>
 
@@ -39,20 +34,35 @@
 
     <scm>
         <url>http://github.com/webjars/metroui</url>
-        <connection>scm:git:https://github.com/webjars/metroui.git</connection>
-        <developerConnection>scm:git:https://github.com/webjars/metroui.git</developerConnection>
+        <connection>scm:git:http://github.com/webjars/metroui.git</connection>
+        <developerConnection>scm:git:http://github.com/webjars/metroui.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <upstream.version>2.0.23</upstream.version>
+        <upstream.version>4.2.39</upstream.version>
+        <jquery.version>3.3.1-2</jquery.version>
         <upstream.url>https://github.com/olton/Metro-UI-CSS/archive</upstream.url>
         <destDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${upstream.version}</destDir>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>jquery</artifactId>
+            <version>${jquery.version}</version>
+        </dependency>
+    </dependencies>
+
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.3</version>
+            </plugin>
+
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>wagon-maven-plugin</artifactId>
@@ -85,7 +95,7 @@
                                 <unzip src="${project.build.directory}/${project.artifactId}.zip" dest="${project.build.directory}" />
                                 <echo message="moving resources" />
                                 <move todir="${destDir}">
-                                    <fileset dir="${project.build.directory}/Metro-UI-CSS-${upstream.version}" includes="min/ less/ js/ fonts/ css/" />
+                                    <fileset dir="${project.build.directory}/Metro-UI-CSS-${upstream.version}/build" includes="min/ less/ js/ mif/ css/" />
                                 </move>
                             </target>
                         </configuration>
@@ -93,15 +103,9 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-release-plugin</artifactId>
-                <version>2.5</version>
-            </plugin>
-
-            <plugin>
                 <groupId>org.sonatype.plugins</groupId>
                 <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>1.5.1</version>
+                <version>1.6.8</version>
                 <extensions>true</extensions>
                 <configuration>
                     <serverId>sonatype-nexus-staging</serverId>
